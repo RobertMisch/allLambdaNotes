@@ -1,0 +1,8 @@
+13-2 python functions
+
+in string formating, if you include just a number, it increases the number of spaces added in. and will make it have some additional formating
+
+look into list slices abit more, seems you can have multiple : in there to get different effects
+
+slice syntax p[start:end:step]
+keep note that when you make a slice, you are actually allocating a new list in memory

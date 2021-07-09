@@ -1,0 +1,17 @@
+linked list workshop notes
+-matt meyers, facebook guy that teaches some technical interview stuff
+
+adv of linked list. arrays are predetermined sizes, while linked lists can be any size. much better on memory management. the node can be anywhere in memory as long as the pointers are correct
+
+it's also very effecient at adding to the first spot. arrays very inefficient at shifts
+
+problem we did:
+https://www.hackerrank.com/challenges/insert-a-node-into-a-sorted-doubly-linked-list/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=linked-lists
+
+remember uper
+
+figure out the problem
+
+figure out what to do
+
+rememebr never to orphan yourself. keep track of the pointers

@@ -1,0 +1,118 @@
+Practice interview questions...
+1. Tell me a little bit about yourself?
+2. What kind of work environment are you looking for in the next opportunity you take?
+3. What are your strengths and weaknesses as a developer?
+4. Tell me about a group project that you are passionate about?
+5. Where do you see yourself in 3-5 years?
+6. How would your co-workers describe you?
+7. Tell me about a time where you and your teammates did not agree?
+8. Why should we hire you?
+9. What's your dream job?
+10. Can you explain why you changed career paths?
+11. How do you deal with pressure or stressful situations?
+12. What would your first 30, 60, or 90 days look like in this role?
+13. What are your salary requirements?
+14. Give an example of a goal you reached and tell me how you achieved it
+15. Have you ever made a mistake? How did you handle it?
+16. When you worked on multiple projects how did you prioritize?
+17. Have you had to convince a team to utilize a tool/language they weren't thrilled about? How did you do it?
+18. Have you ever had a project that had to change drastically while it was in progress? Why? How did you do it?
+19. Tell me about a major setback you've had. How did you deal with it?
+20. Describe the internet to someone who just woke up from a 30-year coma. (Brain teaser)
+
+1. They need to answer this question with their Elevator pitch: (past - their background,
+present - how they found Lambda what they're learning at Lambda a good time to
+humblebrag about technical skills, future - tie in background and new skills to talk about
+potential future job)
+
+2. Be specific, know about what you want in terms of company culture, size, mentor,
+etc…try to rope in some specifics about the company (you should have some
+background on them)
+
+3. First way to answer this question is to name a weakness that's not really a weakness i.e.
+- "I'm too much of a perfectionist" etc... Second way is to actually provide a weakness
+but then without being prompted provide how you're going to FIX the weakness
+
+4. First talk about what the function of the project is (high level) Make sure they mention
+how the group put the project together (up sale your tech skills again), BUT don't forget
+to talk about YOUR individual contribution
+
+5. Have a specific answer, show you've done your research KNOW where you want to be,
+know what the career progression for a software engineer is.
+
+6. Up sell your soft skills here, be careful about being overly arrogant sounding or too
+cheesy.
+
+7. Again anytime you provide an obstacle or any kind of negative - make sure they also
+provide how they fixed it or a solution
+
+8. Another good opportunity to up sale your tech/soft skills - you should have an idea of
+what the job description is that you're interviewing for so rope in some of those
+qualifications here - Your job here is to craft an answer that covers three things: that you
+can not only do the work, you can deliver great results; that you'll really fit in with the
+team and culture; and that you'd be a better hire than any of the other candidates.
+
+9. Break it down into three parts, like this: What Skills Do You Want to Use? What Interests
+You? What Are Your Values?
+
+10. Explain to the hiring manager why you've made the career decisions you have. More
+importantly, give a few examples of how your past experience is transferable to the new
+role. This doesn't have to be a direct connection; in fact, it's often more impressive when
+a candidate can make seemingly irrelevant experience seem very relevant to the role. But
+also SHOW YOUR PASSION FOR ENGINEERING!
+
+11. A great approach is to talk through your go-to stress-reduction tactics (making the
+world's greatest to-do list, stopping to take 10 deep breaths), and then share an example
+of a stressful situation you navigated with ease.
+
+12. Start by explaining what you'd need to do to get ramped up. What information would you
+need? What parts of the company would you need to familiarize yourself with? What
+other employees would you want to sit down with? Next, choose a couple of areas where
+you think you can make meaningful contributions right away. (e.g., "I think a great starter
+project would be diving into your email marketing campaigns and setting up a tracking
+system for them.")
+13. You should always start off by saying you're more interested in the opportunity and if it's
+the right one you're willing to be flexible - you don't have to give them a number right
+then and there. IF they are pushing you for an actual # then the #1 rule of answering this
+question is doing your research on what you should be paid by using sites like
+Glassdoor. Formula to use: walk away rate + 10k and a 20k range from there: 60k + 10k
+= 70k so the range would be 70k-90k. Then, make sure the hiring manager knows that
+you're flexible. You're communicating that you know your skills are valuable, but that you
+want the job and are willing to negotiate
+14. Time to humble brag about yourself a bit - use the STAR method here, tell them about a
+situation/obstacle/challenge you had in terms of a goal - tell them how you went about
+systematically breaking this down as if you were an engineer piece by piece, then tell
+them the results.
+15. Another one of those questions where they rope you into saying something negative -
+just remember give them a genuine mistake but even if they don't ask you how you fixed
+it - tell them anyway - think like an engineer ALWAYS provide a solution or a way to a
+solution
+16. Again this is a specific Engineer type question, use your common sense, tell them about
+trello boards and how you make lists, break things into pieces, your specific way of
+prioritizing - there's no right or wrong answer they just want to see your thought process
+17. This is where you show your FAIR leadership skills. You want to show that you came up
+with a democratic way to share your ideas, i.e. we had everyone sit down and share why
+they each thought this tool/language would be best, I brought the best and most
+efficient solution to the table, I won majority vote, etc…
+18. Put your Engineer hat on, this is where you can show them you can be ADAPTABLE,
+make it known you did not stress about having to change things you simply found a way
+to come up with the best solution in your time crunch
+19. This doesn't have to be related to Engineering at all, but keep in mind they want to see
+how you handle challenges/stress remember always provide a solution if you have to
+provide a problem/challenge/obstacle. Highlight some soft skills here, calm in the face
+or pressure, leadership, time management, etc…
+20. You may get weird brain teasers like this - remember they don't actually need the right
+answer they're trying to see how your mind works, be creative, think like an Engineer - be
+technical if it's a technology related question, show your personality here a bit :)
+
+
+What qualities make you a great fit for this position?
+Think of what makes you stand out as a job applicant for this role. Review the job description closely and note ways that you exceed the requirements.
+Why are you interested in the role?
+Brainstorm why this position excites you, how it fits into your larger career goals and why you feel it’s the best next step.
+Why are you interested in the company or the industry?
+After you’ve spent time researching the company and the industry, you should have a better sense of the mission, goals and trends impacting the industry. Do these align with the professional goals that you’ve set for yourself? What do you like and respect about the company as a whole? What excites you about the future of the industry? As you start building your story, tie together similarities among your professional goals, the future vision of the company and industry trends you feel are especially important.
+What are the positive traits or characteristics you possess that will serve you well in this role?
+For example, have friends or colleagues described you as especially organized? Curious? Entrepreneurial? Generous? Think about how you’ve long thought of yourself or how others have seen you. Then, think of recent examples from your life when you embodied that characteristic.
+Is there something unique about your background that makes you stand out from other applicants?
+As we’ve mentioned, this is one of the most common interview questions. Therefore, interviewers have heard this answered time and time again. Try to think of something that will hook the interviewer. For example, saying something like, “I’ve been building computers since the age of 8,” when applying for a developer role is likely to make an interviewer's ears perk up.

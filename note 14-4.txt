@@ -1,0 +1,6 @@
+note 14-4
+recursion
+
+1. base case: "when does the recursion stop"
+
+2. "how to I move towards the base case"

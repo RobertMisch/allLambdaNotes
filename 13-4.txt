@@ -1,0 +1,21 @@
+13-4
+
+quick dict tutorial at the start of the day
+
+for w in waypoints:
+	if w["name"] == "a place":
+		w['lon'] = -130
+		w['name']="not a real place"
+
+for w in waypoints:
+	print(w['name'], w['anything else'])
+
+
+file.io the io stands for input and output
+
+brief overview of the sprint for tomorrow
+
+3 exercises
+1 on oop with classes ub classing and inheritance
+1 on list comprehensions
+1 on file i/o, reading in some data from a file and doing basic manipulations on that data'

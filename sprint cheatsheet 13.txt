@@ -1,0 +1,54 @@
+sprint cheatsheet 13
+
+breakdown of what's on the list of things to look into
+3 exercises
+1 on oop with classes, sub-classing and inheritance
+1 on list comprehensions
+1 on file i/o, reading in some data from a file and doing basic manipulations on that data'
+look into importing a csv file
+
+look into running test files, that's how we're going to be graded
+usually it's just python file.test.py
+
+open up the test file to see what data that it will be looking for
+
+standup notes:
+things to ask:
+-time limit/ ability to work after the 3 hours are up. we have the whole day like before (3 hours, submit retro, then keep working)
+-grading, rubric based
+-notes allowed
+
+
+cool tip. if there is a big list of required things
+def __init(self, new_thing)
+self.atri1=new_thing.atri1
+self.atri2=new_thing.atri2
+
+also this is just gheto kwargs! so you can just do (self, **kwargs)
+
+then if you don't want to include a new thing on a child it will default to the original thing
+
+remember .notation for classes [for dictionaries]
+use the built in python help terminal to get python docs
+
+
+how to read csv files
+
+dates = []
+scores = []
+
+with open('file.csv') as csvDataFile:
+    csvReader = csv.reader(csvDataFile)
+    for row in csvReader:
+        dates.append(row[0])
+        scores.append(row[1])
+
+print(dates)
+print(scores)
+
+look into wayfarer as a possible job thing
+
+when accessing a csv file, you can use the column name to access the data from a row
+
+make sure to check in on the next 2 weeks. hardest of the next 2 months
+

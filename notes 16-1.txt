@@ -1,0 +1,102 @@
+notes 16-1
+
+good little operations chart from sam
+# A B   AND  OR  XOR  NOR  NAND
+# 0 0    0   0    0    1    1
+# 0 1    0   1    1    0    1
+# 1 0    0   1    1    0    1
+# 1 1    1   1    0    0    0
+
+0 is false, 1 is true
+
+class:
+the problem:
+find an item in a set/list of items
+
+if space is no object, hash tables are great. O(1) access insert and delete. but it has a O(n) memory complexity
+
+a hashing function takes in a string, and outputs a number which is the array index
+
+if 2 strings output into the same int, that is a collision. unless you know the number of inputs, you will always have collision
+
+ord() lets you see the unicode value
+
+there is also unicode, which has alot more stuff. ascii only covers basic things and not other "glyphs". a glyph is a set of characters.
+
+ascii characters are all bytes
+
+while unicode contains multiple bytes, run by UTF-8
+
+.encode, turns strings into byte.
+
+a hash function will .encode a string, do some math, then get the index
+
+technical difference between a hash table and dictionary. a dictionary takes a key and returns a thing. dictionaries can technically be alot of things, since it describes behaviro. but the python dictionary is implimented as a hash table, which describes a data structure with specific time complexity
+
+hashing function from class (one in notes.py as well)
+data = [None] * 16  # Size should be a power of 2
+​
+def my_hash(s):
+	"""Beej's naive hashing function"""
+​
+	sb = s.encode()
+​
+	total = 0
+​
+	for b in sb:
+		total += b
+		total &= 0xffffffff  # add this for a 32-bit hashing function
+		#total &= 0xffffffffffffffff  # add this for a 64-bit hashing function
+​
+	return total
+​
+def get_index(s):
+	h = my_hash(s)
+​
+	i = h % len(data)
+​
+	return i
+​
+def put(k, v):
+	# Get the index into "data" to store "v"
+	i = get_index(k)
+​
+	# Store v there
+	data[i] = v
+​
+def get(k):
+	i = get_index(k)
+​
+	return data[i]
+​
+def delete(k):
+	i = get_index(k)
+​
+	data[i] = None
+​
+​
+if __name__ == "__main__":
+​
+	put("beej", 3490)
+	put("goats", 999)
+	put("beej", "hello")
+​
+	print(data)
+​
+	print(get("beej"))
+​
+	#print(my_hash("beej"))
+	#print(my_hash("goats"))
+​
+	#print(get_index("beej"))
+	#print(get_index("goats"))
+	#print(get_index("foo"))
+	#print(get_index("bar"))
+	#print(get_index("baz"))
+	#print(get_index("qux"))
+
+
+interesting for JS, objects are log(n) or better. while maps give O(1) guarenteed
+
+sha 256 is a hash function used for cryptographic purposes. not used for hash tables, but it's very hard to ever know the origional value.
+if shortcuts are found, the hash is thought to be cryptographically broken. someday all current ones will be broken, but we keep making new ones.

@@ -1,0 +1,178 @@
+notes 16-3
+
+What are Hash Tables really good at?
+------------------------------------
+Find an item in a collection in constant time
+or
+Recording the results of time-consuming processes
+* Linear search
+* Memoization, caching
+* Network cache
+* Indexing
+* Counting
+* Removing Duplicates
+
+-----------------------------------------------------------------------
+# 0 1 1 2 3 5 8 13 21
+​
+# Memoization, caching
+​
+def fib(n):
+	cache = {}
+​
+	def fib_inner(n):
+		if n <= 1:
+			return n
+​
+		if n not in cache:  # if n's not a key in the cache dict
+			cache[n] = fib_inner(n-1) + fib_inner(n-2)
+​
+		return cache[n]
+​
+	return fib_inner(n)
+​
+for i in range(95):
+	print(f'{i}: {fib(i)}')
+
+----------------------------------------------------------------------
+# Caesar Cipher
+​
+encode_table = {
+    'A': 'H',
+    'B': 'Z',
+    'C': 'Y',
+    'D': 'W',
+    'E': 'O',
+    'F': 'R',
+    'G': 'J',
+    'H': 'D',
+    'I': 'P',
+    'J': 'T',
+    'K': 'I',
+    'L': 'G',
+    'M': 'L',
+    'N': 'C',
+    'O': 'E',
+    'P': 'X',
+    'Q': 'K',
+    'R': 'U',
+    'S': 'N',
+    'T': 'F',
+    'U': 'A',
+    'V': 'M',
+    'W': 'B',
+    'X': 'Q',
+    'Y': 'V',
+    'Z': 'S'
+}
+​
+decode_table = {}
+​
+# Automatically generate the decode_table from the encode_table
+for k, v in encode_table.items():
+	decode_table[v] = k
+​
+def encode(s):
+	r = ""
+​
+	for c in s:
+		r += encode_table[c]
+​
+	return r
+​
+def decode(s):
+	r = ""
+​
+	for c in s:
+		r += decode_table[c]
+​
+	return r
+​
+print(encode("HELLO"))  # plaintext
+​
+print(decode("DOGGE"))  # ciphertext
+
+-------------------------------------------------------------
+
+d = {
+    "foo": 12,
+    "bar": 17,
+    "qux": 2
+}
+​
+items = list(d.items())
+​
+# Sort ascending by key
+items.sort()
+​
+for i in items:
+    print(f'{i[0]}: {i[1]}')
+    
+# Sort ascending by value
+​
+#def keyfunc(e):
+#    return e[1]
+#items.sort(key=keyfunc)
+​
+items.sort(key=lambda e: e[1])
+​
+for i in items:
+    print(f'{i[0]}: {i[1]}')
+
+-------------------------------------------------------------
+
+def letter_count(s):
+	counts = {}
+​
+	for c in s:
+		if c not in counts:
+			counts[c] = 0
+​
+		counts[c] += 1
+		"""
+		if c in counts:
+			counts[c] += 1
+		else:
+			counts[c] = 1
+		"""
+​
+	return counts
+​
+​
+print(letter_count("aabbcaacb"))
+
+-------------------------------------------------------------
+
+import hashlib
+import random
+​
+def hash_function(key):
+    """
+    Returns the low 32 bits of the md5 hash of the key.
+    """
+    # You don't need to understand this
+    return int(hashlib.md5(str(key).encode()).hexdigest()[-8:],16)&0xffffffff
+​
+def how_many_before_collision(buckets, loops=1):
+    for i in range(loops):
+        tries = 0
+        tried = set()
+​
+        while True:
+            random_key = random.random()
+            index = hash_function(random_key) % buckets
+​
+            if index not in tried:
+                tried.add(index)
+                tries += 1
+            else:
+                break
+​
+        print(f"{buckets} buckets, {tries} before hash collision. ({tries / buckets * 100:.1f}% full)")
+​
+how_many_before_collision(65536, 10)
+
+
+ESQUIRE3▒▒ALL
+
+WNVGI

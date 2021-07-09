@@ -1,0 +1,232 @@
+sprint 10 cheatsheet
+
+questions:
+	Mention two parts of Express that you learned about this week.
+	express is just a node module. express is just a collection of middleware. use to build RESTful api's
+
+	Describe Middleware?
+	Middleware functions can get the request and response objects, operate on them, and (when specified) trigger some action. Examples are logging or security.
+
+	Describe a Resource?
+	a collection of data. in a RESTful api, everything is a resource
+
+	What can the API return to help clients know if a request was successful?
+		status messages, and JSON objects that we send as responses
+	How can we partition our application into sub-applications?
+		by making routers. ex post router and comment router to seperate the two
+
+pieces of what I'll need
+DEPENDANCYS
+npm install, npm i express, npm install -D nodemon
+
+PACKAGE
+	"server": "nodemon index.js",
+    "start": "node index.js"
+
+INDEX
+	const server = require('./server.js');
+
+	// server.listen(4000, () => {
+	//   console.log('\n* Server Running on http://localhost:4000 *\n');
+	// });
+	const port = process.env.PORT || 5000;
+	server.listen(port, () => {
+	  console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+	});
+
+SERVER
+	const express = require('express');
+	const userRouter = require('./users/userRouter.js')
+	const postRouter = require('./posts/postRouter.js')
+	const server = express();
+	server.use(logger, express.json());
+
+
+	server.get('/', (req, res) => {
+	  res.send(`<h2>Let's write some middleware!</h2>`);
+	});
+
+	//custom middleware just making a change for lambda forms
+
+	function logger(req, res, next) {
+	  console.log(`[${new Date().toISOString()}]: ${req.method} : http://localhost:4000${req.url}`)
+	  next()
+	}
+
+	server.use('/api/users', userRouter)
+	server.use('/api/posts', postRouter)
+	module.exports = server;
+
+REQUESTS
+
+IMPORTANT NOTES:
+	get can get an id param and be used as a getbyid function.
+	GET
+		router.get('/', (req, res) => {
+		  // do your magic!
+		  userData.get()
+		    .then(users => {
+		      if (users) {
+		        res.status(200).json(users);
+		      } else {
+		        res.status(404).json({ message: 'users not found' });
+		      }
+		    })
+		    .catch(error => {
+		      // log error to database
+		      console.log(error);
+		      res.status(500).json({
+		        message: 'Error retrieving the users',
+		      });
+		    });
+		});
+
+	POST:
+		router.post('/', validateUser, (req, res) => {
+		  // do your magic!
+		  userData.insert(req.body)
+		    .then(user => {
+		      res.status(201).json(user)
+		    })
+		    .catch(error => {
+		      res.status(500).json({ message: 'an error as occured' })
+		    })
+		});
+
+	PUT
+		router.put('/:id', validateUserId, (req, res) => {
+		  // do your magic!
+		  userData.update(req.params.id, req.body)
+		    .then(count => {
+		      if (count > 0) {
+		        res.status(200).json({ message: 'The post has been edited' });
+		      } else {
+		        res.status(500).json({ message: 'Error editing the user' });
+		      }
+		    })
+		    .catch(error => {
+		      // log error to database
+		      console.log(error);
+		      res.status(500).json({
+		        message: 'Error removing the user',
+		      });
+		    });
+		});
+
+	DELETE
+		router.delete('/:id', validateUserId, (req, res) => {
+		  // do your magic!
+		  userData.remove(req.params.id)
+		    .then(count => {
+		      if (count > 0) {
+		        res.status(200).json({ message: 'The post has been nuked' });
+		      } else {
+		        res.status(500).json({ message: 'Error removing the user' });
+		      }
+		    })
+		    .catch(error => {
+		      // log error to database
+		      console.log(error);
+		      res.status(500).json({
+		        message: 'Error removing the user',
+		      });
+		    });
+		});
+
+MIDDLEWARE
+
+	EXAMPLE OF VALIDATING BY ID
+		function validateUserId(req, res, next) {
+		  // do your magic!
+		  userData.getById(req.params.id)
+		    .then(user => {
+		      if (user) {
+		        req.user = user
+		        next()
+		      } else {
+		        res.status(404).json({ message: 'user not found' });
+		      }
+		    })
+		    .catch(error => {
+		      res.status(400).json({ message: "invalid user id" })
+		    })
+		}
+	EXAMPLE OF VALIDATING JSON ENTRY
+		function validateUser(req, res, next) {
+		  // do your magic!
+		  // console.log(req.body)
+		  if (!req.body) {
+		    res.status(400).json({ message: 'missing user data' })
+		  } else if (!req.body.name) {
+		    res.status(400).json({ message: 'missing required name field' })
+		  } else {
+		    next()
+		  }
+		}
+
+STRETCH
+
+-commit
+-add the cors npm module: npm i cors.
+-add server.use(cors()) after server.use(express.json())
+-create react app
+-cd into app
+-npm install axios
+-in app, slice of state, axios call, update state, map over state, card with prop info.
+
+we'll need to npm i express and nodemon -D to make it a dev dependancy. check into TK
+
+make a project id middleware.
+look into error handling abit.
+
+get
+getbyid//dont worry about doing
+put
+delete
+post
+for both 
+
+and you need to use the getProjectActions in a route to list out a projects actions.
+
+stretch needs to download cors, and create react app.
+
+-npm install, and add the other dependancies
+-put the index in
+-get your server and start scripts up
+-get the server.js running which will have the routes
+	-optional, can put logger in server files
+-package.json script creation
+-create project routes file, needs crud
+-create action routes after, needs crud
+
+-put validateProjectId middleware.
+	going to have to get all of them and look for the id in comparison to the inputed id
+-if you validate more than once, make middleware for it
+
+
+stretch:
+-commit
+-add the cors npm module: npm i cors.
+-add server.use(cors()) after server.use(express.json())
+-create react app
+
+AFTERHOURS NOTES
+quick side-note, arrays are always truthy, even if empty. but with this syntax it'll check if something is inside it
+
+if([variable to test if truthy])
+
+another good note, is to destructure stuff out of req.body
+
+const{title, contents}=req.body
+
+tip to also destructure id out of params. on larger scale projects, params can pick up a bunch of junk.
+
+for the delete, you don't nessisarily need a .json after the res.status(204)
+
+can just do res.status(204).end()
+
+good to think of the front end as our customer. we should send data to them back like we got it.
+
+good to keep track of schema. if it says required. needed for posts. keep track of data type
+
+questions for chris: careers stuff.

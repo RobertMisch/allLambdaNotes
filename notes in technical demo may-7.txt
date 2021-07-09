@@ -1,0 +1,106 @@
+notes in technical demo
+
+recurrsion
+-first off, have a basecase. check the number of things were working with, and then when it's 0 or 1 return. or if it's what youre looking for return back up.
+-recurrence relation: every step should move you towards the base case 
+-memoization, is cashing of solutions in recursion that you calculate over and over.
+
+heuristics based solutions, good aproximations used in very hard problems
+
+
+this problem combines 2 different things.
+
+rotating, which is the patern of switching the coordinates
+
+the second piece, is how to swap it in place.
+theres a different mentality and approach behind it
+
+nots for another solution using recursion
+
+def stepPerms(n):
+  pass
+  # base cases:
+  # if we steps left is negative
+    # return 0
+  # if we have no steps left
+    # return 1
+  # if cache[n] exists, return the cache
+  
+  # call our function recursively
+  # cache[n] = stepPerms(n-1) + n-2 + n-3
+  # return what's in our cache
+    
+# def tabuation(arr,n):
+#   arr = [1,1,2]
+#   for i in range(3,n+1):
+#     arr.append(arr[i-1] + arr[i-2] + arr[i-3])
+#   print(arr)
+#   return arr[n]
+
+# print(tabuation([], 24))
+
+# def memoSteps(n):
+  cache = [1,1,2]
+  def stairs(n):
+    if n in cache:
+      return cache[n]
+    cache[n] = stairs(n-1) + stairs(n-2) + stairs(n-3)
+    return cache[n]
+  return stairs(n)
+  
+
+# print(memoSteps(7))
+
+
+solution for binary tree traversal problem that I ran into
+
+const solution = (arr) => {
+    // Type your solution here 
+    //display all nodes and their children
+    /*arr.forEach((item, index)=>{
+        let Lchild= -1
+        let Rchild= -1
+        if(((index*2)+1)<arr.length){
+            Lchild=arr[((index*2)+1)]
+        }
+        if(((index*2)+2)<arr.length){
+            Rchild=arr[((index*2)+2)]
+        }
+        //console.log(`index: ${index}, Lchild: ${Lchild} Rchild: ${Rchild}`)
+    })*/
+    //left weight
+    function calculate_weight(start){
+        let stack=[start]
+        let solution = 0
+        while(stack.length > 0){
+            let current_point=stack.pop()
+            solution= solution+arr[current_point]
+
+            let left_value=(current_point*2)+1
+            let right_value=(current_point*2)+2
+
+            if(left_value<arr.length){
+                if(!(arr[left_value] === -1)){
+                    stack.push(left_value)
+                }
+            }
+            if(right_value<arr.length){
+                if(!(arr[right_value] === -1)){
+                    stack.push(right_value)
+                }
+            }
+        }
+        return solution
+    }
+    let left_weight=calculate_weight(1)
+    let right_weight=calculate_weight(2)
+    console.log(`Lweight: ${left_weight} || Rweight: ${right_weight}`)
+    if(left_weight > right_weight){
+        return "Left"
+    }
+    if(left_weight < right_weight){
+        return "Right"
+    }
+    return ""
+};
+

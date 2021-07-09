@@ -1,0 +1,28 @@
+notes 14-2
+
+the why of linked list
+
+there are trade offs with every data structure decision. good to think of what you gain, lose, and care about for your project.
+
+what does an array look like in memory?
+
+imagine ram as a bunch of blocks.
+
+when you pop(0) that is a O(n) operation. not the best. pop()is O(1). and pop(n)is O(n)
+
+removing and reseting the tail reference in a linked list is O(n)
+but removing from the head is O(1). remove some point in the linked list is O(n)
+
+array inserting at 0 is also O(n), with inserting at the end being O(1)
+inserting at the begining of a linked list is O(1) and the end O(n)
+
+garbage collection in python
+-languages we've worked with, clean memory by themselves
+-they check to see if anything is refering to  something if memory. if there are no references to that piece of memory, it's collected as garbage
+
+importing the linked list
+
+
+import sys
+sys.path.append('../singly_linked_list')
+from singly_linked_list import LinkedList

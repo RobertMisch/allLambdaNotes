@@ -1,0 +1,26 @@
+13-1 python
+
+tl's github: wchamber01
+
+dont mix tabs and spaces. either use tab, or use 4 spaces, no mixing
+
+mindset, endgoal of our unit
+
+run through the framework of uper multiple times. to just slowly keep chipping away at the problem
+
+profesional developers are paid to solve problem solvers. code just happens to be the tool that you use to execute the solution that you came up with
+
+the more senior you become as a developer, the more questions that you ask. our goal is to figure out what we dont know but need to know, then find the answer
+
+running a python file
+ python file.py
+
+python3 
+will make it so your bash becomes a python interpreter
+
+underscore has a special meaning in python.
+
+if you do for _ in q:
+it'll toss the value away, signal for 'I'm not using it'
+
+quick break out on the module 3 sys arg stuff

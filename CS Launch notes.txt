@@ -1,0 +1,22 @@
+CS notes
+
+cs is problem solving practice
+gain the ability to solve any problem that you see through systematic parsing and solving all the pieces
+
+we'll be solving alot of the classics
+
+we're going to download uper
+
+understand plan execute reflect. the basic pattern of all problem solving in programing
+
+planing and understanding often overlooked and undervalued
+
+how to make the most of our time in cs
+
+growth mindset (what a lambda guy lol)
+
+we need to ask alot of questions. more and more questions
+
+get stuck fast, get unstuck fast
+
+get python 3

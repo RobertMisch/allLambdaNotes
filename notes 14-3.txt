@@ -1,0 +1,16 @@
+notes 14-3
+trees are good at storing nested data that has both width and depth
+our computer file system is one prominant system that uses a tree structure
+
+trees similar to linked list, you have access to the root, and you go down and search through them
+
+trees always follow some structure, for our number tree, low values go left, high values go right
+
+what about equal values?
+-dont handle them
+-have all duplicates go to one side all the time. <-better to do
+
+the ability to search with bts is really strong
+
+to normally look through a normal list, runtime is O(n)
+to search through a binary search tree is O(log(n))

@@ -1,0 +1,268 @@
+sprint 12 cheat sheet
+
+questions:
+What is the purpose of using sessions?
+ they are commonly used to allow a server to store information about a client. That information can then be used for a variety of purposes.
+
+ What does bcrypt do to help us store passwords in a secure manner.
+ it hashes the passwords using a key derivation function (fancy name for hashing function). preventing it from being easily seen or decrypted
+
+ What does bcrypt do to slow down attackers?
+ it runs an algorithm that hashes the information multiple times (rounds). meaning an attacker needs to have the hash, know the algorithm used, and how many rounds were used to generate the hash in the first place.
+
+ What are the three parts of the JSON Web Token?
+ The header.
+The payload.
+The signature.
+
+what i need for the sprint
+mvp
+dependancies
+npm i bcryptjs
+npm i jsonwebtoken 
+
+Implement the register and login functionality inside /auth/auth-router.js. A user has username and password. Both properties are required.
+
+	const bcryptjs = require("bcryptjs");
+	const jwt = require("jsonwebtoken");
+
+	const router = require("express").Router();
+
+	const Users = require("../users/users-model.js");
+	const { isValid } = require("../users/users-services.js");
+
+	router.post("/register", (req, res) => {
+	  const credentials = req.body;
+
+	  if (isValid(credentials)) {
+	    const rounds = process.env.BCRYPT_ROUNDS || 8;
+
+	    // hash the password
+	    const hash = bcryptjs.hashSync(credentials.password, rounds);
+
+	    credentials.password = hash;
+
+	    // save the user to the database
+	    Users.add(credentials)
+	      .then(user => {
+	        res.status(201).json({ data: user });
+	      })
+	      .catch(error => {
+	        res.status(500).json({ message: error.message });
+	      });
+	  } else {
+	    res.status(400).json({
+	      message: "please provide username and password and the password shoud be alphanumeric",
+	    });
+	  }
+	});
+
+	router.post("/login", (req, res) => {
+	  const { username, password } = req.body;
+
+	  if (isValid(req.body)) {
+	    Users.findBy({ "username": username })
+	      .then(([user]) => {
+	        // compare the password the hash stored in the database
+	        if (user && bcryptjs.compareSync(password, user.password)) {
+	          // produce and send a token that includes the username and the role of the user
+	          const token = createToken(user);
+
+	          res.status(200).json({ message: "Welcome to our API", token });
+	        } else {
+	          res.status(401).json({ message: "Invalid credentials" });
+	        }
+	      })
+	      .catch(error => {
+	        res.status(500).json({ message: error.message });
+	      });
+	  } else {
+	    res.status(400).json({
+	      message: "please provide username and password and the password shoud be alphanumeric",
+	    });
+	  }
+	});
+
+	function createToken(user) {
+	  const payload = {
+	    username: user.username,
+	    department:user.department
+	  };
+
+	  const secret = process.env.JWT_SECRET || "keepitsecret,keepitsafe!";
+
+	  const options = {
+	    expiresIn: "1d",
+	  };
+
+	  return jwt.sign(payload, secret, options);
+	}
+
+	module.exports = router;
+
+Implement the authenticate middleware inside /auth/authenticate-middleware.js.
+	const jwt = require("jsonwebtoken");
+
+	module.exports = (req, res, next) => {
+	  // add code here to verify users are logged in
+	  const token = req.headers.authorization;
+
+	  if (token) {
+	    const secret = process.env.JWT_SECRET || "keepitsecret,keepitsafe!";
+
+	    jwt.verify(token, secret, (error, decodedToken) => {
+	      if (error) {
+	        // the token is invalid
+	        res.status(401).json({error, message: "you cannot pass!" });
+	      } else {
+	        // the token is good
+	        req.jwt = decodedToken;
+
+	        next();
+	      }
+	    });
+	  } else {
+	    res.status(400).json({ message: "Please provide the authentication information" });
+	  }
+	};
+
+Write a minimum o 2 tests per API endpoint. Write more tests if you have time.
+
+const request = require("supertest");
+
+const server = require("./server.js");
+const db = require("../data/dbConfig.js");
+
+beforeEach(() => {
+    return db.migrate.rollback().then(()=>db.migrate.latest()).then(()=>db.seed.run());
+});
+
+register tests
+	describe("POST /register", () => {
+	        it("should return 201", () => {
+	            return request(server)
+	                .post("/register")
+	                .send({ 
+		                "username": "spooky",
+		                "password": "lemons"
+	                 })
+	                .then(response => {
+	                    expect(response.status).toBe(201);
+	                    expect(response.body.user).toEqual({"username":"spooky"})
+	                });
+	        });
+	    })
+
+login tests
+		describe("POST /login", () => {
+		        it("should return 201", () => {
+		            return request(server)
+		                .post("/login")
+		                .send({ 
+			                "username": "spooky",
+			                "password": "lemons"
+		                 })
+		                .then(response => {
+		                    expect(response.status).toBe(200);
+		                    expect(response.body.token).toBe(true)
+		                });
+		        });
+		    })
+
+get jokes
+
+	describe('GET /user', function() {
+	 it('responds with json', function(done) {
+	   request(server)
+	     .get('/user')
+	     .auth('username', 'password')
+	     .set('Accept', 'application/json')
+	     .expect('Content-Type', /json/)
+	     .expect(200, done);
+	 });
+	});
+
+stretch
+react router
+-signup
+-signin
+
+	import React, { useState } from "react";
+	import { Link } from "react-router-dom";
+	import { axiosWithAuth } from "../utils/axiosWithAuth";
+
+	const intialState = {
+	  username: "Lambda School",
+	  password: "i<3Lambd4",
+	  isFetching: false
+	};
+
+	const Login = props => {
+	  const [login, setLogin] = useState(intialState);
+
+	  const handleChange = e => {
+	    setLogin({ ...login, [e.target.name]: e.target.value });
+	  };
+
+	  const handleSubmit = e => {
+	    e.preventDefault();
+	    setLogin({ ...login, isFetching: true });
+	    axiosWithAuth()
+	      .post("/api/login", login)
+	      .then(res => {
+	        console.log(res)
+	        localStorage.setItem("token", res.data.payload);
+	        props.history.push("/bubble-page");
+	      })
+	      .catch(err => {
+	        console.log(err, "sorry, an error has occured while logging you in");
+	      });
+	  };
+
+	  return (
+	    <div>
+	      <h3>Login</h3>
+	      <div>
+	        <form onSubmit={handleSubmit}>
+	          <input
+	            label="Username"
+	            type="text"
+	            name="username"
+	            placeholder="Lambda School"
+	            value={login.username}
+	            onChange={handleChange}
+	          />
+	          <br />
+	          <input
+	            label="Password"
+	            type="password"
+	            name="password"
+	            placeholder="i<3Lambd4"
+	            value={login.password}
+	            onChange={handleChange}
+	          />
+	          <br />
+	          <br />
+	          <button>Log In</button>
+	          {login.isFetching && "Please wait...logging you in"}
+	        </form>
+	      </div>
+	    </div>
+	  );
+	};
+
+	export default Login;
+
+-axios call for the jokes
+
+
+sprint note. for useing auth in postman, dont use the auth tab. go to the headers and make an authorization key with the token in it. no quotes on the token
+
+notes for being a good dev for build week.
+
+how to make your api accept a stringified token. because I had to change axiosWithAuth
+
+when planning out the project. ask what kinda data they want and how they want it structured.
+
+get boiler plate done over the weekend.
+get response data structure down
